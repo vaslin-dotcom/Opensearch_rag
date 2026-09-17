@@ -19,7 +19,7 @@ services:
     ports:
       - "8001:8000"
     volumes:
-      - ./data:/data
+      - ../data:/data
 
   generating:
     build:
