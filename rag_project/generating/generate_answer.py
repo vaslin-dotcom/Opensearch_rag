@@ -1,4 +1,4 @@
-from scripts.search import search
+from generating.search import search
 from langchain_openai import ChatOpenAI
 import os
 from dotenv import load_dotenv
@@ -26,7 +26,7 @@ def generate_answer( client:OpenSearch, query: str, INDEX="rag_poc_index"):
 
         Question: {query}
 
-        Always give the citation from where you got this output"""
+        Always give the citation from where you got this output, like pdf name and its page numbers"""
 
         response = llm.invoke(prompt)
         return response.content

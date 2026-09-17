@@ -1,0 +1,31 @@
+services:
+  opensearch:
+    image: opensearchproject/opensearch:latest
+    container_name: opensearch
+    environment:
+      - discovery.type=single-node
+      - DISABLE_SECURITY_PLUGIN=true
+      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+
+  indexing:
+    build:
+      context: ./indexing
+    container_name: indexing-service
+    depends_on:
+      - opensearch
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./data:/data
+
+  generating:
+    build:
+      context: ./generating
+    container_name: generating-service
+    depends_on:
+      - opensearch
+    ports:
+      - "8002:8000"

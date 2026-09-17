@@ -3,7 +3,6 @@ from opensearchpy import OpenSearch
 def create_index(client: OpenSearch, index_name: str = 'rag_poc_index'):
 
 
-
     index_body={
         'settings':{
             'index.knn':True
